@@ -27,6 +27,16 @@ jobs:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
+
+    - name: Set custom Maven build directory
+      run: |
+          mkdir -p ${{ runner.temp }}/target
+          chmod -R u+w ${{ runner.temp }}/target
+
+    - name: Build with Maven
+      run: mvn clean test -DoutputDirectory=${{ runner.temp }}/target
+      shell: bash
+    
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
