@@ -33,9 +33,15 @@ jobs:
           mkdir -p ${{ runner.temp }}/target
           chmod -R u+w ${{ runner.temp }}/target
 
-    - name: Build with Maven
-      run: mvn clean test -DoutputDirectory=${{ runner.temp }}/target
-      shell: bash
+    # - name: Build with Maven
+    #   run: mvn clean test -DoutputDirectory=${{ runner.temp }}/target
+    #   shell: bash
+
+    - name: Ensure clean-up of target directory
+      run: |
+          for i in {1..3}; do
+            rm -f target/jacoco.exec || echo "Failed to delete jacoco.exec, retrying in 5 seconds" && sleep 5;
+          done
     
     - name: Build with Maven
       run: mvn -B package --file pom.xml
