@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_SanjayMolankal_Game_of_life_1758111796390-pr-trigger-input-set
+  identifier: Build_SanjayMolankal_Game_of_life_1758111796390prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: Maven
+  pipeline:
+    identifier: Build_SanjayMolankal_Game_of_life_1758111796390
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
